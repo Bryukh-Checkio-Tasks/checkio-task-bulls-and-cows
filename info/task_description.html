@@ -1,39 +1,58 @@
 <p>
-    <i>( Describe task in general )</i>
+    In the grandpa's notebook Nicola found the description of the old human game <strong>"Bulls and Cows"</strong>.
+    He wants to play with Stephan, but Nicola does not like to lose.
+    And so we should help and write the program for this game (for guessing).
 </p>
 
 <p>
-    Sum two passed ints
-</p>
-
-<p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
-
-<p><i>( Explain input and output values )</i></p>
-<p>
-    <strong>Input: </strong> Two arguments. Both are int
+    The host thinks 4-digits sequence. The digits must be all different.
+    Then, in turn, you try to guess the sequence.
+    If the matching digits are on their right positions, they are "bulls", if on different positions, they are "cows".
+    The host says you how many "bulls" and "cows" in your guess.
+    You should solve the code up to <strong>seven turns</strong>.
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    On each step your function receives a list with information from last steps.
+    Each element of the list contains your guess and the result for it in the follow format
+    <strong>"XXXX YBZC"</strong>, where:
+</p>
+<ul>
+    <li>XXXX is a guess</li>
+    <li>Y is a quantity of "bulls"</li>
+    <li>XXXX is a quantity of "cows"</li>
+</ul>
+
+<p>
+    For each step your function returns your new guess as a string with four digits.
 </p>
 
+<p>Let's consider an example. The hidden code is "5612". At the start your function receives the empty list.
+    Your guess is "1234" -- two digits on the different positions but for the code.
+    So the next call will be ["1234 0B2C"]. The next guess is "6512" -- two "bulls", two "cows".
+    The next input is ["1234 0B2C", "6512 2B2C"]. And the last guess is "5612" and you win.</p>
+<p>
+    <strong>Input: </strong> A list with information from last steps.
+</p>
+
+<p>
+    <strong>Output: </strong> The guess as a string.
+</p>
 
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
     <p>
         <strong>Example:</strong>
     </p>
     <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
+checkio([])  # "1234"
+checkio(["1234 0B2C"])  # "6512"
+checkio(["1234 0B2C", "6512 2B2C"])  # "5612" and you win.
     </pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
+    This is a simple game that can amuse you (especially if play only with mind).
+    But also your algorithm is an example of the prediction software.
 </p>
