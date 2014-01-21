@@ -1,20 +1,20 @@
 <p>
-    In the grandpa's notebook Nicola found the description of the old human game <strong>"Bulls and Cows"</strong>.
-    He wants to play with Stephan, but Nicola does not like to lose.
-    And so we should help and write the program for this game (for guessing).
+    In his grandfather's notebook Nicola found a description of the old game <strong>"Bulls and Cows"</strong>, popular amongst humans.
+    He wants to try and play it with Stephan, but Nicola does not like to lose.
+    That's where we come in! Write a program for this game (for guessing).
 </p>
 
 <p>
-    The host thinks 4-digits sequence. The digits must be all different.
+    The host thinks up a 4-digits sequence. The digits must all be different.
     Then, in turn, you try to guess the sequence.
-    If the matching digits are on their right positions, they are "bulls", if on different positions, they are "cows".
-    The host says you how many "bulls" and "cows" in your guess.
-    You should solve the code up to <strong>seven turns</strong>.
+    If the matching digits are on their right positions, they are called "bulls", when they are on different positions, they are "cows".
+    The host tells you how many "bulls" and "cows" you've guessed.
+    You should solve the code in up to <strong>seven turns</strong>.
 </p>
 
 <p>
-    On each step your function receives a list with information from last steps.
-    Each element of the list contains your guess and the result for it in the follow format
+    On each step, your function receives a list with information from the last steps.
+    Each element of the list contains your guess and its result in the following format
     <strong>"XXXX YBZC"</strong>, where:
 </p>
 <ul>
@@ -27,12 +27,12 @@
     For each step your function returns your new guess as a string with four digits.
 </p>
 
-<p>Let's consider an example. The hidden code is "5612". At the start your function receives the empty list.
-    Your guess is "1234" -- two digits on the different positions but for the code.
-    So the next call will be ["1234 0B2C"]. The next guess is "6512" -- two "bulls", two "cows".
-    The next input is ["1234 0B2C", "6512 2B2C"]. And the last guess is "5612" and you win.</p>
+<p>Let's consider an example. The hidden code is "5612". At the start your function receives an empty list.
+    Your guess is "1234" -- two digits are on different positions but appear in the code.
+    So the next call will be ["1234 0B2C"]. Your next guess is "6512" -- two "bulls", two "cows".
+    The next input is ["1234 0B2C", "6512 2B2C"]. And the last guess is "5612". Aaand you win!</p>
 <p>
-    <strong>Input: </strong> A list with information from last steps.
+    <strong>Input: </strong> A list with information from your last steps.
 </p>
 
 <p>
@@ -53,6 +53,6 @@ checkio(["1234 0B2C", "6512 2B2C"])  # "5612" and you win.
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    This is a simple game that can amuse you (especially if play only with mind).
-    But also your algorithm is an example of the prediction software.
+    This is a simple game that might even amuse you without doing much coding.
+    But when you do code, your algorithm is an example of what prediction software looks like.
 </p>
