@@ -58,6 +58,12 @@
     border-color: #de0202;
 }
 
+.animation-content .guesses {
+    font-size: 16px;
+    color: #294270;
+    font-family: Verdana, Arial, sans-serif;
+}
+
 .tryit-content {
     background-color: #dfe8f7;
     font-family: verdana;

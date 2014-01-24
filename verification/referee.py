@@ -35,8 +35,11 @@ def process_referee(referee_data, user_result):
             bulls += 1
         elif d in goal:
             cows += 1
+    last_result = "{0} {1}B{2}C".format(user_result, bulls, cows)
     referee_data["input"].append("{0} {1}B{2}C".format(user_result, bulls, cows))
     referee_data["last_guess"] = user_result
+    referee_data["last_result"] = last_result
+
     referee_data.update({"result": True, "result_addon": "Next Step"})
     return referee_data
 
@@ -45,7 +48,8 @@ def process_referee(referee_data, user_result):
 def is_win_referee(referee_data):
     if not referee_data["result"]:
         return False
-    return referee_data["last_guess"] == referee_data["goal"]
+    referee_data["is_win"] = referee_data["last_guess"] == referee_data["goal"]
+    return referee_data["is_win"]
 
 api.add_listener(
     ON_CONNECT,

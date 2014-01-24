@@ -57,16 +57,27 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             var userResult = data.out;
             var result = data.ext["result"];
             var result_addon = data.ext["result_addon"];
+            var goal = data.ext["goal"];
+            var is_win = data.ext["is_win"];
+            var last_result = data.ext["last_result"];
 
 
             //if you need additional info from tests (if exists)
             var explanation = data.ext["explanation"];
 
-            $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult));
+
+            if (is_win) {
+                $content.find('.output').html('&nbsp;Your guess is right:&nbsp;' + JSON.stringify(userResult));
+            }
+            else {
+                $content.find('.output').html('&nbsp;Your guess:&nbsp;' + JSON.stringify(userResult));
+            }
+
+
 
             if (!result) {
                 $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
-                $content.find('.answer').html(JSON.stringify(result_addon));
+                $content.find('.answer').html(result_addon + "<br>The hidden code is " + goal);
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
@@ -75,16 +86,19 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 $content.find('.call').html('Pass: checkio(' + JSON.stringify(checkioInput) + ')');
                 $content.find('.answer').remove();
             }
-            //Dont change the code before it
 
-            //Your code here about test explanation animation
-            //$content.find(".explanation").html("Something text for example");
-            //
-            //
-            //
-            //
-            //
+            var last_guesses = checkioInput.slice();
 
+            if (result) {
+                last_guesses.push(last_result);
+            }
+
+            var table = $content.find(".guesses");
+
+            for (var i = 0; i < last_guesses.length; i++) {
+                var tr = $("<tr></tr>").text(last_guesses[i]);
+                table.append(tr);
+            }
 
             this_e.setAnimationHeight($content.height() + 60);
 
