@@ -1,49 +1,57 @@
-"""
-CheckiOReferee is a base referee for checking you code.
-    arguments:
-        tests -- the dict contains tests in the specific structure.
-            You can find an example in tests.py.
-        cover_code -- is a wrapper for the user function and additional operations before give data
-            in the user function. You can use some predefined codes from checkio.referee.cover_codes
-        checker -- is replacement for the default checking of an user function result. If given, then
-            instead simple "==" will be using the checker function which return tuple with result
-            (false or true) and some additional info (some message).
-            You can use some predefined codes from checkio.referee.checkers
-        add_allowed_modules -- additional module which will be allowed for your task.
-        add_close_builtins -- some closed builtin words, as example, if you want, you can close "eval"
-        remove_allowed_modules -- close standard library modules, as example "math"
-
-checkio.referee.checkers
-    checkers.float_comparison -- Checking function fabric for check result with float numbers.
-        Syntax: checkers.float_comparison(digits) -- where "digits" is a quantity of significant
-            digits after coma.
-
-checkio.referee.cover_codes
-    cover_codes.unwrap_args -- Your "input" from test can be given as a list. if you want unwrap this
-        before user function calling, then using this function. For example: if your test's input
-        is [2, 2] and you use this cover_code, then user function will be called as checkio(2, 2)
-    cover_codes.unwrap_kwargs -- the same as unwrap_kwargs, but unwrap dict.
-
-"""
-
+from math import hypot
 from checkio.signals import ON_CONNECT
 from checkio import api
-from checkio.referees.io import CheckiOReferee
-from checkio.referees import cover_codes
-from checkio.referees import checkers
+from checkio.referees.multicall import CheckiORefereeMulti
 
 from tests import TESTS
+from random import shuffle
+
+MAX_STEP = 7
+
+def rand_seq():
+    digits = list(range(10))
+    shuffle(digits)
+    return "".join(str(x) for x in digits[:4])
+
+
+def initial_referee(data):
+    return {"goal": data or rand_seq(),
+            "input": [],
+            "step": 0}
+
+
+def process_referee(referee_data, user_result):
+    goal = referee_data['goal']
+    referee_data['step'] += 1
+    if referee_data['step'] > MAX_STEP:
+        referee_data.update({"result": False, "result_addon": "Too many moves."})
+        return referee_data
+    if not isinstance(user_result, str) or len(user_result) != 4 or not user_result.isdigit():
+        referee_data.update({"result": False, "result_addon": "The function should return a string with 4 digits."})
+        return referee_data
+    bulls = cows = 0
+    for i, d in enumerate(user_result):
+        if goal[i] == d:
+            bulls += 1
+        elif d in goal:
+            cows += 1
+    referee_data["input"].append("{0} {1}B{2}C".format(user_result, bulls, cows))
+    referee_data["last_guess"] = user_result
+    referee_data.update({"result": True, "result_addon": "Next Step"})
+    return referee_data
+
+
+
+def is_win_referee(referee_data):
+    if not referee_data["result"]:
+        return False
+    return referee_data["last_guess"] == referee_data["goal"]
 
 api.add_listener(
     ON_CONNECT,
-    CheckiOReferee(
+    CheckiORefereeMulti(
         tests=TESTS,
-        cover_code={
-            'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
-        },
-        # checker=None,  # checkers.float.comparison(2)
-        # add_allowed_modules=[],
-        # add_close_builtins=[],
-        # remove_allowed_modules=[]
-    ).on_ready)
+        initial_referee=initial_referee,
+        process_referee=process_referee,
+        is_win_referee=is_win_referee,
+        ).on_ready)
