@@ -6,5 +6,7 @@ TESTS = {
     "4. Extra": "2437",
     "5. Random": "",
     "6. Random": "",
+    "7. Random": "",
+    "8. Random": "",
 
 }

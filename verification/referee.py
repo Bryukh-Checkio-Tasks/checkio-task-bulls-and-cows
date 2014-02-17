@@ -6,7 +6,7 @@ from checkio.referees.multicall import CheckiORefereeMulti
 from tests import TESTS
 from random import shuffle
 
-MAX_STEP = 7
+MAX_STEP = 8
 
 def rand_seq():
     digits = list(range(10))
