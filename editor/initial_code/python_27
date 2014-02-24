@@ -2,8 +2,8 @@ def checkio(data):
     #your function
     return "0123"
 
-#These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
+    #This part is using only for self-checking and not necessary for auto-testing
     def check_solution(func, goal):
         recent = []
         for step in range(7):
