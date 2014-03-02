@@ -6,7 +6,7 @@ if __name__ == '__main__':
     #This part is using only for self-checking and not necessary for auto-testing
     def check_solution(func, goal):
         recent = []
-        for step in range(7):
+        for step in range(8):
             user_result = func(recent)
             bulls = cows = 0
             for u, g in zip(user_result, goal):
