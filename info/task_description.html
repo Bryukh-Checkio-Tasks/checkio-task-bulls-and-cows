@@ -32,7 +32,7 @@
     So the next call will be ["1234 0B2C"]. Your next guess is "6512" -- two "bulls", two "cows".
     The next input is ["1234 0B2C", "6512 2B2C"]. And the last guess is "5612". Aaand you win!</p>
 <p>
-    <strong>Input: </strong> A list with information from your last steps.
+    <strong>Input: </strong> Information from your last steps as a list of strings.
 </p>
 
 <p>
@@ -56,3 +56,9 @@ checkio(["1234 0B2C", "6512 2B2C"])  # "5612" and you win.
     This is a simple game that might even amuse you without doing much coding.
     But when you do code, your algorithm is an example of what prediction software looks like.
 </p>
+
+
+<p>
+    <strong>Precondition:</strong>Step information satisfies regexp "[0-9]{4} [0-4]B[0-4]C"<br>
+</p>
+
