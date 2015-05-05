@@ -1,0 +1,67 @@
+<p>
+    En el cuaderno de su abuelo, Nicola encontr&oacute; una descripci&oacute;n de un juego llamado  <strong>"Toros y vacas"</strong>
+    (<em>Picas y Fijas</em>), que fue muy popular entre los seres humanos de la antig&uuml;edad. Aunque &eacute;l est&aacute; dispuesto a
+    probarlo e invitar a Stephan, Nicola ha decidido que no va a perder ninguna partida.
+    &iexcl;Ah&iacute; es donde entramos nosotros!
+
+</p>
+
+<p>
+    El anfitri&oacute;n piensa una secuencia de 4 d&iacute;gitos (el c&oacute;digo oculto). Los d&iacute;gitos deben ser todos diferentes.
+    Luego, a su vez, deber&aacute;s tratar de adivinar la secuencia. Si los d&iacute;gitos coincidentes est&aacute;n en sus
+    posiciones correctas, se les llama "toros", pero si est&aacute;n en diferentes posiciones, son denominados
+    "vacas". El anfitri&oacute;n deber&aacute; decir en cada ronda, cuantos "toros" y cuantas "vacas" has adivinado.
+    Deber&aacute;s resolver el c&oacute;digo en <strong>ocho rondas</strong> (aunque es posible hacerlo en siete).
+</p>
+
+<p>
+  En cada ronda, tu funci&oacute;n recibe una lista con la informaci&oacute;n de las rondas anteriores. Cada elemento
+  de la lista contiene tu hip&oacute;tesis y el resultado, en el siguiente formato
+    <strong>"XXXX YBZC"</strong>, donde:
+</p>
+<ul>
+    <li>XXXX es una hip&oacute;tesis de cu&aacute;l es el c&oacute;digo oculto</li>
+    <li>Y es la cantidad de "toros" (<em>Bull</em> en ingl&eacute;s)</li>
+    <li>Z es la cantidad de "vacas" (<em>Cow</em> en ingl&eacute;s)</li>
+</ul>
+
+<p>
+  Para cada ronda, tu funci&oacute;n devuelve su nueva hip&oacute;tesis como una cadena (<em>str</em>), con cuatro d&iacute;gitos.
+</p>
+
+<p>Veamos un ejemplo. El c&oacute;digo oculto es "5612". Al inicio de tu funci&oacute;n recibir&aacute;s una lista vac&iacute;a. Tu
+  primera hip&oacute;tesis es "1234" - dos d&iacute;gitos est&aacute;n en diferentes posiciones, pero aparecen en el c&oacute;digo
+  oculto. As&iacute; que la pr&oacute;xima llamada ser&aacute; ["1234 0B2C"]. Su siguiente hip&oacute;tesis es "6512" - dos "toros",
+  y dos "vacas". La siguiente entrada es ["1234 0B2C", "6512 2B2C"]. La &uacute;ltima hip&oacute;tesis es "5612", y
+  con esta &iexcl;ganas el juego!</p>
+<p>
+    <strong>Datos de Entrada: </strong> Informaci&oacute;n de rondas previas, como una lista de cadenas (<em>str</em>).
+</p>
+
+<p>
+    <strong>Salida: </strong> Una hip&oacute;tesis de cu&aacute;l es el c&oacute;digo oculto, como una cadena (<em>str</em>).
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Ejemplo:</strong>
+    </p>
+    <pre class="brush: python">
+checkio([])  # "1234"
+checkio(["1234 0B2C"])  # "6512"
+checkio(["1234 0B2C", "6512 2B2C"])  # "5612" and you win.
+    </pre>
+</div>
+
+<p class="for_info_only">
+    <strong>&iquest;C&oacute;mo se usa?: </strong>
+    Este es un juego simple que puede resultarte entretenido, incluso si no implementas por completo
+    el c&oacute;digo para resolverlo. Sin embargo una vez lo implementas, obtienes un algoritmo que es un
+    ejemplo de c&oacute;mo ser&iacute;a un software de predicci&oacute;n.
+</p>
+
+
+<p>
+    <strong>Condiciones:</strong>La informaci&oacute;n de cada ronda satisface regexp "[0-9]{4} [0-4]B[0-4]C"<br>
+</p>
